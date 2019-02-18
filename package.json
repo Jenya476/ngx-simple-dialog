@@ -1,0 +1,40 @@
+{
+  "_from": "ngx-simple-dialog@0.0.5",
+  "_id": "ngx-simple-dialog@0.0.5",
+  "_inBundle": false,
+  "_integrity": "sha512-fJCjNcMwgCpG5vmh7NtY64rhNRIQTjoF0NS/ShRtHLGGaieYu+gjDE3lFFIxFCZH+dstbdJW5JxgJTQsW9X2+g==",
+  "_location": "/ngx-simple-dialog",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "ngx-simple-dialog@0.0.5",
+    "name": "ngx-simple-dialog",
+    "escapedName": "ngx-simple-dialog",
+    "rawSpec": "0.0.5",
+    "saveSpec": null,
+    "fetchSpec": "0.0.5"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/ngx-simple-dialog/-/ngx-simple-dialog-0.0.5.tgz",
+  "_shasum": "79d5c9ef920d8c47d9398907ea9a7eef3a13f455",
+  "_spec": "ngx-simple-dialog@0.0.5",
+  "_where": "/Users/jenya/Work/Test/test-simple-modal",
+  "author": {
+    "name": "Jenya476"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "keywords": [
+    "angular6",
+    "dialog",
+    "modal"
+  ],
+  "main": "/index.ts",
+  "name": "ngx-simple-dialog",
+  "private": false,
+  "version": "0.0.5"
+}
