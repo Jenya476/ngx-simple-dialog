@@ -1,4 +1,13 @@
-import {ApplicationRef, ComponentFactoryResolver, Injectable, Injector, Type, ViewContainerRef} from '@angular/core';
+import {
+  ApplicationRef,
+  ComponentFactoryResolver,
+  ComponentRef,
+  EmbeddedViewRef,
+  Injectable,
+  Injector,
+  Type,
+  ViewContainerRef
+} from '@angular/core';
 import {Subject} from 'rxjs';
 import {DialogRef} from './dialog-ref';
 import {DialogConfig} from './dialog-config';
@@ -9,6 +18,7 @@ import {DialogConfig} from './dialog-config';
 export class DialogService {
 
   viewContainerRef: ViewContainerRef;
+  componentRef: ComponentRef<any>;
   data: any;
   closeData: Subject<any>;
   dialogRef = new DialogRef(this);
@@ -24,8 +34,14 @@ export class DialogService {
 
     this.closeData = new Subject<any>();
 
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(component);
-    this.applicationRef.components[0].instance.viewContainerRef.createComponent(componentFactory);
+    if (this.componentRef) {
+      this.componentRef.destroy();
+    }
+    this.componentRef = this.componentFactoryResolver.resolveComponentFactory(component).create(this.injector);
+    this.applicationRef.attachView(this.componentRef.hostView);
+    const domElem = (this.componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
+    this.applicationRef.components[0].location.nativeElement.appendChild(domElem);
+
     return this.dialogRef;
   }
 
@@ -36,9 +52,10 @@ export class DialogService {
     this.clearAllData();
   }
 
-  clearAllData() {
+  private clearAllData() {
     this.data = undefined;
-    this.applicationRef.components[0].instance.viewContainerRef.clear();
+    // this.applicationRef.components[0].instance.viewContainerRef.clear();
+    this.componentRef.destroy();
     this.closeData.unsubscribe();
   }
 }
